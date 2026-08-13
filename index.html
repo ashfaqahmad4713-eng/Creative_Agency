@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -268,42 +267,4 @@ showPage("login");
 
 function login(){
 
-let email=document.getElementById("loginEmail").value;
-let pass=document.getElementById("loginPass").value;
-
-let savedEmail=localStorage.getItem("ca_email");
-let savedPass=localStorage.getItem("ca_pass");
-
-if(email===savedEmail && pass===savedPass){
-
-document.getElementById("userInfo").innerText=
-"Welcome, "+localStorage.getItem("ca_name");
-
-showPage("dashboard");
-
-}else{
-
-alert("Email or password is incorrect.");
-
-}
-
-}
-
-
-function logout(){
-
-showPage("home");
-
-}
-
-
-function demo(){
-
-alert("Demo only. No real-money transaction is processed.");
-
-}
-
-</script>
-
-</body>
-  </html>
+let email=do
