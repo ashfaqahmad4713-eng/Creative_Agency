@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Creative Agency</title>
+
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f7fb;color:#172033}
+header{background:#111827;color:white;padding:18px 20px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:22px;font-weight:bold}
+header button{background:#2563eb;color:white;border:0;padding:10px 15px;border-radius:8px}
+.hero{background:linear-gradient(135deg,#172554,#2563eb);color:white;padding:55px 22px;text-align:center}
+.hero h1{font-size:40px;margin:0 0 12px}
+.hero p{line-height:1.6}
+.container{max-width:900px;margin:auto;padding:25px 18px}
+.card{background:white;padding:22px;border-radius:15px;margin-bottom:18px;box-shadow:0 4px 18px #0001}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+input,select{width:100%;padding:13px;margin:7px 0 14px;border:1px solid #ccd3dd;border-radius:8px}
+button{padding:12px 18px;border:0;border-radius:8px;background:#2563eb;color:white;font-weight:bold}
+.package{border:2px solid #e5e7eb}
+.amount{font-size:27px;font-weight:bold}
+.stat{font-size:25px;font-weight:bold}
+.hidden{display:none}
+.notice{background:#fff7ed;padding:14px;border-left:4px solid #f97316;line-height:1.5}
+footer{text-align:center;padding:25px;color:#64748b}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">Creative Agency</div>
+<button onclick="showPage('login')">Login</button>
+</header>
+
+<section class="hero">
+<h1>Creative Agency</h1>
+<p>Welcome to Creative Agency</p>
+<button onclick="showPage('register')">Create Account</button>
+</section>
+
+<div class="container">
+
+<div class="notice">
+<b>Demo Platform:</b> This website is a prototype. It does not process
+real-money investments or guarantee returns.
+</div>
+
+<!-- HOME -->
+<section id="home">
+
+<h2>Investment Packages</h2>
+
+<div class="grid">
+
+<div class="card package">
+<h3>Starter</h3>
+<div class="amount">PKR 5,000</div>
+<p>Demo package</p>
+<button onclick="showPage('login')">Select</button>
+</div>
+
+<div class="card package">
+<h3>Standard</h3>
+<div class="amount">PKR 10,000</div>
+<p>Demo package</p>
+<button onclick="showPage('login')">Select</button>
+</div>
+
+<div class="card package">
+<h3>Premium</h3>
+<div class="amount">PKR 25,000</div>
+<p>Demo package</p>
+<button onclick="showPage('login')">Select</button>
+</div>
+
+</div>
+
+<h2>Why Creative Agency?</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>Secure Account</h3>
+<p>Simple account and dashboard interface.</p>
+</div>
+
+<div class="card">
+<h3>Easy Dashboard</h3>
+<p>View your demo balance and transactions.</p>
+</div>
+
+<div class="card">
+<h3>Payment Options</h3>
+<p>JazzCash and Easypaisa options are shown for demonstration.</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- REGISTER -->
+
+<section id="register" class="hidden">
+
+<div class="card">
+
+<h2>Create Account</h2>
+
+<input id="regName" placeholder="Full Name">
+
+<input id="regEmail" type="email" placeholder="Email">
+
+<input id="regPass" type="password" placeholder="Password">
+
+<button onclick="register()">Register</button>
+
+<p>
+Already have an account?
+<button onclick="showPage('login')">Login</button>
+</p>
+
+</div>
+
+</section>
+
+
+<!-- LOGIN -->
+
+<section id="login" class="hidden">
+
+<div class="card">
+
+<h2>Login</h2>
+
+<input id="loginEmail" type="email" placeholder="Email">
+
+<input id="loginPass" type="password" placeholder="Password">
+
+<button onclick="login()">Login</button>
+
+<p>
+Don't have an account?
+<button onclick="showPage('register')">Register</button>
+</p>
+
+</div>
+
+</section>
+
+
+<!-- DASHBOARD -->
+
+<section id="dashboard" class="hidden">
+
+<h2>User Dashboard</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>Account Balance</h3>
+<div class="stat">PKR 0</div>
+</div>
+
+<div class="card">
+<h3>Total Deposit</h3>
+<div class="stat">PKR 0</div>
+</div>
+
+<div class="card">
+<h3>Withdrawal</h3>
+<div class="stat">PKR 0</div>
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>Deposit Request</h2>
+
+<input type="number" placeholder="Amount">
+
+<select>
+<option>JazzCash</option>
+<option>Easypaisa</option>
+</select>
+
+<button onclick="demo()">Submit Deposit</button>
+
+</div>
+
+
+<div class="card">
+
+<h2>Withdrawal Request</h2>
+
+<input type="number" placeholder="Amount">
+
+<select>
+<option>JazzCash</option>
+<option>Easypaisa</option>
+</select>
+
+<input placeholder="JazzCash / Easypaisa Number">
+
+<button onclick="demo()">Request Withdrawal</button>
+
+</div>
+
+
+<div class="card">
+
+<h2>Account</h2>
+
+<p id="userInfo"></p>
+
+<button onclick="logout()">Logout</button>
+
+</div>
+
+</section>
+
+</div>
+
+<footer>
+© 2026 Creative Agency
+</footer>
+
+
+<script>
+
+function showPage(page){
+
+document.querySelectorAll("section").forEach(function(x){
+x.classList.add("hidden");
+});
+
+document.getElementById(page).classList.remove("hidden");
+
+window.scrollTo(0,0);
+}
+
+
+function register(){
+
+let name=document.getElementById("regName").value;
+let email=document.getElementById("regEmail").value;
+let pass=document.getElementById("regPass").value;
+
+if(!name || !email || !pass){
+alert("Please fill all fields");
+return;
+}
+
+localStorage.setItem("ca_name",name);
+localStorage.setItem("ca_email",email);
+localStorage.setItem("ca_pass",pass);
+
+alert("Account created successfully!");
+
+showPage("login");
+}
+
+
+function login(){
+
+let email=document.getElementById("loginEmail").value;
+let pass=document.getElementById("loginPass").value;
+
+let savedEmail=localStorage.getItem("ca_email");
+let savedPass=localStorage.getItem("ca_pass");
+
+if(email===savedEmail && pass===savedPass){
+
+document.getElementById("userInfo").innerText=
+"Welcome, "+localStorage.getItem("ca_name");
+
+showPage("dashboard");
+
+}else{
+
+alert("Email or password is incorrect.");
+
+}
+
+}
+
+
+function logout(){
+
+showPage("home");
+
+}
+
+
+function demo(){
+
+alert("Demo only. No real-money transaction is processed.");
+
+}
+
+</script>
+
+</body>
+  </html>
