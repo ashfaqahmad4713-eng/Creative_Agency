@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Creative Agency | Earn With Tasks</title>
+
+<style>
+:root{
+--bg:#070b2b;
+--card:#101743;
+--text:#fff;
+--muted:#b8c1e8;
+--pink:#ff2dbb;
+--blue:#2d6cff;
+--gold:#ffc928;
+--green:#21df89;
+}
+
+*{box-sizing:border-box}
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+color:var(--text);
+background:
+radial-gradient(circle at 80% 10%,#5420a8 0,#11175b 30%,#070b2b 70%);
+min-height:100vh;
+}
+
+header{
+position:sticky;
+top:0;
+z-index:5;
+background:#080c2bdd;
+padding:14px 5%;
+display:flex;
+align-items:center;
+justify-content:space-between;
+border-bottom:1px solid #ffffff22;
+}
+
+.logo{
+font-weight:900;
+font-size:22px;
+}
+
+.logo span{
+color:var(--pink);
+}
+
+nav{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+}
+
+button{
+border:0;
+border-radius:12px;
+padding:12px 18px;
+font-weight:800;
+cursor:pointer;
+color:#fff;
+background:linear-gradient(135deg,var(--blue),var(--pink));
+}
+
+button.secondary{
+background:#ffffff10;
+border:1px solid #ffffff2b;
+}
+
+.container{
+max-width:1150px;
+margin:auto;
+padding:28px 5%;
+}
+
+.hero{
+padding:65px 5%;
+text-align:center;
+}
+
+.hero h1{
+font-size:clamp(38px,7vw,76px);
+margin:0;
+background:linear-gradient(90deg,#fff,#ffc928,#ff2dbb);
+-webkit-background-clip:text;
+color:transparent;
+}
+
+.hero p{
+font-size:20px;
+color:var(--muted);
+max-width:720px;
+margin:20px auto 28px;
+}
+
+.badges{
+display:flex;
+gap:10px;
+justify-content:center;
+flex-wrap:wrap;
+}
+
+.badge{
+padding:9px 14px;
+border:1px solid #ffffff22;
+border-radius:30px;
+background:#ffffff0b;
+}
+
+.grid{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(220px,1fr));
+gap:18px;
+}
+
+.card{
+background:
+linear-gradient(145deg,#151c50,#0b1034);
+border:1px solid #ffffff1c;
+border-radius:22px;
+padding:22px;
+box-shadow:0 20px 45px #0005;
+}
+
+.package{
+position:relative;
+overflow:hidden;
+}
+
+.package h3{
+font-size:23px;
+margin:0 0 10px;
+}
+
+.price{
+font-size:30px;
+font-weight:900;
+color:var(--gold);
+}
+
+.reward{
+font-size:16px;
+color:#72ffbd;
+margin:12px 0;
+}
+
+.small{
+font-size:13px;
+color:var(--muted);
+line-height:1.5;
+}
+
+.section-title{
+text-align:center;
+margin:40px 0 24px;
+}
+
+.hidden{
+display:none!important;
+}
+
+.notice{
+background:#261a0b;
+border:1px solid #ffc92866;
+padding:15px;
+border-radius:14px;
+color:#ffe9a1;
+}
+
+input{
+width:100%;
+padding:13px;
+margin:8px 0 14px;
+border-radius:10px;
+border:1px solid #ffffff22;
+background:#070b2b;
+color:white;
+}
+
+.form{
+max-width:440px;
+margin:25px auto;
+}
+
+.dash{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(190px,1fr));
+gap:15px;
+}
+
+.stat{
+font-size:28px;
+font-weight:900;
+color:#72ffbd;
+}
+
+.toast{
+margin-top:15px;
+color:#72ffbd;
+font-weight:700;
+}
+
+footer{
+margin-top:50px;
+padding:35px 5%;
+background:#05071f;
+color:var(--muted);
+text-align:center;
+}
+
+.danger{
+color:#ffb2b2;
+}
+
+@media(max-width:600px){
+header{
+align-items:flex-start;
+gap:10px;
+}
+
+nav button{
+padding:9px 11px;
+}
+
+.hero{
+padding:45px 5%;
+}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+Creative <span>Agency</span>
+</div>
+
+<nav>
+
+<button class="secondary"
+onclick="show('home')">
+Home
+</button>
+
+<button class="secondary"
+onclick="show('packages')">
+Packages
+</button>
+
+<button onclick="show('login')">
+Login
+</button>
+
+<button onclick="show('register')">
+Create Account
+</button>
+
+</nav>
+
+</header>
+
+<main id="home" class="page">
+
+<section class="hero">
+
+<h1>
+Earn Money Online
+</h1>
+
+<p>
+Complete digital tasks, earn rewards,
+and track your progress from one
+colorful dashboard.
+</p>
+
+<div class="badges">
+
+<div class="badge">
+⚡ Fast Tasks
+</div>
+
+<div class="badge">
+🔐 Secure Demo
+</div>
+
+<div class="badge">
+🎧 Support
+</div>
+
+</div>
+
+<p>
+
+<button onclick="show('register')">
+Create Free Account
+</button>
+
+<button class="secondary"
+onclick="show('packages')">
+View Packages
+</button>
+
+</p>
+
+</section>
+
+<div class="container">
+
+<div class="notice">
+
+<b>Important:</b>
+This is a task-reward platform demo.
+Rewards are earned by completing assigned
+tasks and are not guaranteed investment returns.
+
+</div>
+
+<h2 class="section-title">
+Popular Task Packages
+</h2>
+
+<div id="homePackages" class="grid">
+</div>
+
+<h2 class="section-title">
+How It Works
+</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>1. Create Account</h3>
+<p class="small">
+Register your account in seconds.
+</p>
+</div>
+
+<div class="card">
+<h3>2. Choose Package</h3>
+<p class="small">
+Activate a task package.
+</p>
+</div>
+
+<div class="card">
+<h3>3. Complete Tasks</h3>
+<p class="small">
+Finish available tasks to receive
+eligible rewards.
+</p>
+</div>
+
+<div class="card">
+<h3>4. Request Withdrawal</h3>
+<p class="small">
+Request payout of eligible earned rewards.
+</p>
+</div>
+
+</div>
+
+</div>
+
+</main>
