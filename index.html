@@ -266,3 +266,64 @@ showPage("login");
 
 
 function login(
+function login(){
+
+let email=document.getElementById("loginEmail").value.trim().toLowerCase();
+let pass=document.getElementById("loginPass").value;
+
+let savedEmail=localStorage.getItem("ca_email");
+let savedPass=localStorage.getItem("ca_pass");
+let savedName=localStorage.getItem("ca_name");
+
+if(!email || !pass){
+alert("Please enter email and password");
+return;
+}
+
+if(!savedEmail || !savedPass){
+alert("Account not found. Please create an account first.");
+showPage("register");
+return;
+}
+
+if(email === savedEmail && pass === savedPass){
+
+localStorage.setItem("ca_logged_in","yes");
+
+document.getElementById("userInfo").innerText =
+"Logged in as: " + savedName + " (" + savedEmail + ")";
+
+alert("Login successful!");
+
+showPage("dashboard");
+
+}else{
+
+alert("Invalid email or password");
+
+}
+
+}
+
+function logout(){
+localStorage.removeItem("ca_logged_in");
+showPage("home");
+}
+
+function demo(){
+alert("Demo request submitted successfully.");
+}
+
+window.addEventListener("load",function(){
+
+if(localStorage.getItem("ca_logged_in")==="yes"){
+
+let name=localStorage.getItem("ca_name") || "";
+let email=localStorage.getItem("ca_email") || "";
+
+document.getElementById("userInfo").innerText =
+"Logged in as: " + name + " (" + email + ")";
+
+}
+
+});
