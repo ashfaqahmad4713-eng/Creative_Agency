@@ -369,3 +369,225 @@ Request payout of eligible earned rewards.
 </div>
 
 </main>
+<section id="packages" class="page hidden">
+
+<div class="container">
+
+<h1>💎 Packages</h1>
+
+<p class="small">
+Choose a task package. Rewards are based on completing eligible tasks.
+</p>
+
+<div id="allPackages" class="grid"></div>
+
+</div>
+
+</section>
+
+
+<section id="register" class="page hidden">
+
+<div class="container">
+
+<div class="card form">
+
+<h2>✨ Create Account</h2>
+
+<input id="rname"
+placeholder="Full Name">
+
+<input id="remail"
+type="email"
+placeholder="Email">
+
+<input id="rpass"
+type="password"
+placeholder="Password">
+
+<button onclick="register()">
+Create Account
+</button>
+
+<p class="small">
+Already have an account?
+<a href="#" onclick="show('login')">
+Login
+</a>
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section id="login" class="page hidden">
+
+<div class="container">
+
+<div class="card form">
+
+<h2>🔐 Login</h2>
+
+<input id="lemail"
+type="email"
+placeholder="Email">
+
+<input id="lpass"
+type="password"
+placeholder="Password">
+
+<button onclick="login()">
+Login
+</button>
+
+<p class="small">
+No account?
+<a href="#" onclick="show('register')">
+Create one
+</a>
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section id="dashboard" class="page hidden">
+
+<div class="container">
+
+<h1>📊 User Dashboard</h1>
+
+<div class="dash">
+
+<div class="card">
+<div class="small">
+Eligible Earnings
+</div>
+
+<div id="balance"
+class="stat">
+PKR 0
+</div>
+</div>
+
+
+<div class="card">
+<div class="small">
+Active Package
+</div>
+
+<div id="active"
+class="stat">
+None
+</div>
+</div>
+
+
+<div class="card">
+<div class="small">
+Completed Tasks
+</div>
+
+<div id="tasks"
+class="stat">
+0
+</div>
+</div>
+
+</div>
+
+
+<div class="card"
+style="margin-top:18px">
+
+<h2>⚡ Daily Tasks</h2>
+
+<p class="small">
+Complete available tasks to earn eligible rewards.
+</p>
+
+<button onclick="completeTask()">
+Complete Demo Task
+</button>
+
+<div id="taskmsg"
+class="toast">
+</div>
+
+</div>
+
+
+<div class="card"
+style="margin-top:18px">
+
+<h2>💰 Withdrawal Request</h2>
+
+<input
+id="withdraw"
+type="number"
+placeholder="Amount">
+
+<button onclick="withdrawRequest()">
+Request Withdrawal
+</button>
+
+<div id="wmsg"
+class="toast">
+</div>
+
+</div>
+
+
+<div class="card"
+style="margin-top:18px">
+
+<h2>👤 Account</h2>
+
+<p id="accountInfo"
+class="small">
+</p>
+
+<button class="secondary"
+onclick="logout()">
+Logout
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<footer>
+
+<b>Creative Agency</b>
+
+<div style="font-size:13px;line-height:1.6;margin-top:12px">
+
+UK Company Registration No:
+<span class="danger">
+[VERIFY & ENTER REAL NUMBER]
+</span>
+
+<br>
+
+USA State/Entity No:
+<span class="danger">
+[VERIFY & ENTER REAL NUMBER]
+</span>
+
+<br>
+
+Do not publish a company number unless it
+belongs to your actual registered company.
+
+</div>
+
+</footer>
