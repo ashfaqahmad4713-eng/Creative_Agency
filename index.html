@@ -591,3 +591,394 @@ belongs to your actual registered company.
 </div>
 
 </footer>
+<script><script>
+
+const packages = [
+  {name:"Starter", price:300, reward:30},
+  {name:"Basic", price:500, reward:40},
+  {name:"Silver", price:1000, reward:60},
+  {name:"Gold", price:3000, reward:120},
+  {name:"Platinum", price:5000, reward:180},
+  {name:"Diamond", price:10000, reward:300},
+  {name:"Premium", price:25000, reward:700},
+  {name:"VIP", price:50000, reward:1400},
+  {name:"Elite", price:100000, reward:2800}
+];
+
+
+function show(id){
+
+  document.querySelectorAll(".page").forEach(function(page){
+    page.classList.add("hidden");
+  });
+
+  document.getElementById(id).classList.remove("hidden");
+
+  window.scrollTo(0,0);
+
+  if(id === "dashboard"){
+    renderDashboard();
+  }
+}
+
+
+function packageCard(p){
+
+  return `
+  <div class="card package">
+
+    <h3>💎 ${p.name}</h3>
+
+    <div class="price">
+      PKR ${p.price.toLocaleString()}
+    </div>
+
+    <div class="reward">
+      Task reward: up to PKR ${p.reward.toLocaleString()}
+    </div>
+
+    <p class="small">
+      Activate this task package and complete
+      eligible tasks to earn rewards.
+    </p>
+
+    <button onclick="buyPackage(${p.price},'${p.name}',${p.reward})">
+      Activate Package
+    </button>
+
+  </div>
+  `;
+}
+
+
+function loadPackages(){
+
+  document.getElementById("homePackages").innerHTML =
+    packages.slice(0,4).map(packageCard).join("");
+
+  document.getElementById("allPackages").innerHTML =
+    packages.map(packageCard).join("");
+}
+
+
+function register(){
+
+  const name =
+    document.getElementById("rname").value.trim();
+
+  const email =
+    document.getElementById("remail").value.trim().toLowerCase();
+
+  const password =
+    document.getElementById("rpass").value;
+
+  if(!name || !email || !password){
+
+    alert("Please fill all fields.");
+
+    return;
+  }
+
+
+  const user = {
+
+    name:name,
+
+    email:email,
+
+    password:password,
+
+    balance:0,
+
+    tasks:0,
+
+    activePackage:null
+
+  };
+
+
+  localStorage.setItem(
+    "creativeAgencyUser",
+    JSON.stringify(user)
+  );
+
+
+  alert("Account created successfully!");
+
+  show("login");
+}
+
+
+function login(){
+
+  const email =
+    document.getElementById("lemail").value.trim().toLowerCase();
+
+  const password =
+    document.getElementById("lpass").value;
+
+
+  const user =
+    JSON.parse(
+      localStorage.getItem("creativeAgencyUser") || "null"
+    );
+
+
+  if(!user){
+
+    alert("Account not found. Please create an account.");
+
+    return;
+  }
+
+
+  if(
+    email !== user.email ||
+    password !== user.password
+  ){
+
+    alert("Incorrect email or password.");
+
+    return;
+  }
+
+
+  localStorage.setItem(
+    "creativeAgencyLoggedIn",
+    "yes"
+  );
+
+
+  show("dashboard");
+}
+
+
+function buyPackage(price,name,reward){
+
+  const user =
+    JSON.parse(
+      localStorage.getItem("creativeAgencyUser") || "null"
+    );
+
+
+  if(!user){
+
+    alert("Please create an account first.");
+
+    show("register");
+
+    return;
+  }
+
+
+  const loggedIn =
+    localStorage.getItem("creativeAgencyLoggedIn");
+
+
+  if(loggedIn !== "yes"){
+
+    alert("Please login first.");
+
+    show("login");
+
+    return;
+  }
+
+
+  const confirmBuy =
+    confirm(
+      "Activate " +
+      name +
+      " package for PKR " +
+      price.toLocaleString() +
+      "?"
+    );
+
+
+  if(!confirmBuy){
+
+    return;
+  }
+
+
+  user.activePackage = {
+
+    name:name,
+
+    price:price,
+
+    reward:reward,
+
+    date:new Date().toLocaleDateString()
+
+  };
+
+
+  localStorage.setItem(
+    "creativeAgencyUser",
+    JSON.stringify(user)
+  );
+
+
+  alert(
+    name +
+    " package activated in demo mode."
+  );
+
+
+  show("dashboard");
+}
+
+
+function renderDashboard(){
+
+  const user =
+    JSON.parse(
+      localStorage.getItem("creativeAgencyUser") || "null"
+    );
+
+
+  if(!user){
+
+    show("login");
+
+    return;
+  }
+
+
+  document.getElementById("balance").innerText =
+    "PKR " +
+    (user.balance || 0).toLocaleString();
+
+
+  document.getElementById("tasks").innerText =
+    user.tasks || 0;
+
+
+  document.getElementById("active").innerText =
+    user.activePackage
+      ? user.activePackage.name
+      : "None";
+
+
+  document.getElementById("accountInfo").innerText =
+    user.name +
+    " — " +
+    user.email;
+}
+
+
+function completeTask(){
+
+  const user =
+    JSON.parse(
+      localStorage.getItem("creativeAgencyUser") || "null"
+    );
+
+
+  if(!user){
+
+    show("login");
+
+    return;
+  }
+
+
+  if(!user.activePackage){
+
+    alert(
+      "Please activate a package first."
+    );
+
+    show("packages");
+
+    return;
+  }
+
+
+  user.tasks =
+    (user.tasks || 0) + 1;
+
+
+  user.balance =
+    (user.balance || 0) +
+    user.activePackage.reward;
+
+
+  localStorage.setItem(
+    "creativeAgencyUser",
+    JSON.stringify(user)
+  );
+
+
+  document.getElementById("taskmsg").innerText =
+    "Demo task completed. PKR " +
+    user.activePackage.reward.toLocaleString() +
+    " reward credited.";
+
+
+  renderDashboard();
+}
+
+
+function withdrawRequest(){
+
+  const user =
+    JSON.parse(
+      localStorage.getItem("creativeAgencyUser") || "null"
+    );
+
+
+  const amount =
+    Number(
+      document.getElementById("withdraw").value
+    );
+
+
+  if(!user){
+
+    show("login");
+
+    return;
+  }
+
+
+  if(!amount || amount <= 0){
+
+    alert("Enter a valid amount.");
+
+    return;
+  }
+
+
+  if(amount > user.balance){
+
+    alert("Insufficient eligible earnings.");
+
+    return;
+  }
+
+
+  document.getElementById("wmsg").innerText =
+    "Withdrawal request recorded in demo mode. " +
+    "A verified payment provider/backend is required " +
+    "for real payouts.";
+}
+
+
+function logout(){
+
+  localStorage.removeItem(
+    "creativeAgencyLoggedIn"
+  );
+
+  show("home");
+}
+
+
+loadPackages();</script>
+
+</footer>
+
+</body>
+</html>
